@@ -1,0 +1,3 @@
+export const ADD_REVIEW = 'ADD_REVIEW'
+export const REVIEWS_FAILED = 'REVIEWS_FAILED'
+export const ADD_REVIEWS = "ADD_REVIEWS"
