@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './home.css'
-import {Modal, Card, Form, Button} from 'react-bootstrap'
+import {Modal, Card, Form, Button, CardDeck} from 'react-bootstrap'
 import {connect} from 'react-redux'
 import { addReview } from '../redux/ActionCreators'
 
@@ -19,7 +19,8 @@ function Home(props) {
     function RenderReview({review,addReview,id}) {
         let reviews = review.map(rev => {
             return(
-                    <Card className='mx-auto' style={{width: '18rem' }} text='dark' border='secondary'>
+                <CardDeck style={{display: 'flex', width:'20rem', justifyContent:'center', flexDirection: 'row'}}>
+                    <Card className='' style={{flex: 1}} text='dark' border='secondary'>
                         <Card.Img className='img' variant="top" width='10' height='10' src="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/user-male-circle-blue-512.png" />
                         <Card.Body>
                             <Card.Title>{rev.author}</Card.Title>
@@ -28,13 +29,19 @@ function Home(props) {
                             </Card.Text>
                         </Card.Body>
                     </Card>
+                </CardDeck>
                 )
         })
 
         return (
-            <div>
-                {reviews}
-                <ReviewForm id={id} addReview={addReview}/>
+            <div className='container1'>
+                <div className="row align-items-start">
+                    <div className="col-12 col-md m-1">
+                    {reviews}
+                    <ReviewForm id={id} addReview={addReview}/>
+                    </div>
+                </div>
+                
             </div>
         )
 
@@ -63,7 +70,6 @@ function ReviewForm(props){
 
     const handleSubmit = (values) => {
         props.addReview(props.id,values.author,values.review);
-        console.log('Curr state is ', values); 
         toggleModal();
     }
 
